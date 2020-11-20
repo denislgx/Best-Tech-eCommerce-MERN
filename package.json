@@ -1,0 +1,23 @@
+{
+  "name": "best-tech-mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denislgx/E-Commerce-MERN.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/denislgx/E-Commerce-MERN/issues"
+  },
+  "homepage": "https://github.com/denislgx/E-Commerce-MERN#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
