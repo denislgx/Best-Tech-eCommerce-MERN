@@ -14,6 +14,7 @@ import Rating from "../components/Rating";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { listProductDetails } from "../actions/productActions";
+import { addToCart } from "../actions/cartActions";
 
 const ProductScreen = ({ history, match }) => {
     const [quantity, setQuantity] = useState(1);
@@ -28,6 +29,7 @@ const ProductScreen = ({ history, match }) => {
     }, [dispatch, match]);
 
     const addToCartHandler = () => {
+        dispatch(addToCart(match.params.id, quantity));
         history.push(`/cart/${match.params.id}?qty=${quantity}`);
     };
 
