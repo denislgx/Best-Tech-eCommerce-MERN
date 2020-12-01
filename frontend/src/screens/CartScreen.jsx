@@ -23,7 +23,7 @@ const CartScreen = ({ history }) => {
 
     const checkOutHandler = () => {
         console.log("IT WILL CHECKOUT");
-        history.push("login?redirect=shipping");
+        history.push("/login?redirect=shipping");
     };
 
     return (
