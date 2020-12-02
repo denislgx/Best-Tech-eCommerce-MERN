@@ -10,6 +10,6 @@ const router = express.Router();
 
 router.route("/").post(protect, addOrderItems);
 router.route("/:id").get(protect, getOrderById);
-route.route("/:id/pay").put(updateOrderToPaid);
+router.route("/:id/pay").put(updateOrderToPaid);
 
 export default router;
