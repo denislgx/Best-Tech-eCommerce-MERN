@@ -56,7 +56,6 @@ const PlaceOrderScreen = ({ history }) => {
         );
     };
 
-    console.log("SHIPPING ADDRESS>>>>>>", cart.shippingAddress);
     return (
         <>
             <CheckoutSteps setep1 step2 step3 step4 />
