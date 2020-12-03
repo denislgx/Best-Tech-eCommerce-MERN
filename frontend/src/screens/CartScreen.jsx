@@ -16,10 +16,17 @@ import { addToCart, removeFromCart } from "../actions/cartActions";
 const CartScreen = ({ history }) => {
     const dispatch = useDispatch();
     const { cartItems } = useSelector((state) => state.cart);
+    const { userInfo } = useSelector((state) => state.userLogin);
 
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id));
     };
+
+    useEffect(() => {
+        if (!userInfo) {
+            history.push("/");
+        }
+    }, [userInfo, history]);
 
     const checkOutHandler = () => {
         history.push("/login?redirect=shipping");
