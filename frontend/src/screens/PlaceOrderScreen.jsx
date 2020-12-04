@@ -5,6 +5,8 @@ import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import Message from "../components/Message";
 import CheckoutSteps from "../components/ChekoutSteps";
 import { createOrder } from "../actions/orderActions";
+import { USER_DETAILS_RESET } from "../constants/userConstants";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
 const PlaceOrderScreen = ({ history }) => {
     const { cart } = useSelector((state) => state);
@@ -38,6 +40,8 @@ const PlaceOrderScreen = ({ history }) => {
     useEffect(() => {
         if (success) {
             history.push(`/order/${order._id}`);
+            dispatch({ type: USER_DETAILS_RESET });
+            dispatch({ type: ORDER_CREATE_RESET });
         }
         // eslint-disable-next-line
     }, [history, success]);
