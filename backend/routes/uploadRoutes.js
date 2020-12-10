@@ -17,9 +17,10 @@ const storage = multer.diskStorage({
 });
 
 function checkFileType(file, cb) {
+    // console.log("FILE>>>>>>>>>>>", file);
     const fileTypes = /jpg|jpeg|png/;
     const extname = fileTypes.test(
-        path.extname(file.originalname).toLocaleLowerCase()
+        path.extname(file.originalname).toLowerCase()
     );
     const mimetype = fileTypes.test(file.mimetype);
 
@@ -33,7 +34,7 @@ function checkFileType(file, cb) {
 const upload = multer({
     storage,
     fileFilter: function (req, file, cb) {
-        checkFileType();
+        checkFileType(file, cb);
     },
 });
 
