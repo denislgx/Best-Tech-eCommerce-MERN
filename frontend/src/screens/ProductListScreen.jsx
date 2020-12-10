@@ -4,7 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button, Row, Col } from "react-bootstrap";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listProducts } from "../actions/productActions";
+import { listProducts, deleteProduct } from "../actions/productActions";
 
 const ProductListScreen = ({ history }) => {
     const dispatch = useDispatch();
@@ -14,18 +14,24 @@ const ProductListScreen = ({ history }) => {
     );
     const { userInfo } = useSelector((state) => state.userLogin);
 
+    const {
+        loading: loadingDelete,
+        error: errorDelete,
+        success: successDelete,
+    } = useSelector((state) => state.productDelete);
+
     useEffect(() => {
         if (userInfo && userInfo.isAdmin) {
             dispatch(listProducts());
         } else {
             history.push("/login");
         }
-    }, [dispatch, userInfo, history]);
+    }, [dispatch, userInfo, history, successDelete]);
 
-    const deleteHandler = (userId) => {
-        // if (window.confirm("Are you sure you want to delete this product?")) {
-        //     // dispatch(deleteUser(userId));
-        // }
+    const deleteHandler = (id) => {
+        if (window.confirm("Are you sure you want to delete this product?")) {
+            dispatch(deleteProduct(id));
+        }
     };
 
     const createProductHandler = (product) => {
@@ -44,6 +50,8 @@ const ProductListScreen = ({ history }) => {
                     </Button>
                 </Col>
             </Row>
+            {loadingDelete && <Loader />}
+            {errorDelete && <Message variant="danger">{errorDelete}</Message>}
             {loading ? (
                 <Loader />
             ) : error ? (
